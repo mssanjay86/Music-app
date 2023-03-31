@@ -83,7 +83,7 @@ var secondsLabelMinus = ref(document.getElementById("seconds-minus")) as any
 const totalSeconds = ref(0) as any
 const totalSecondsMinus = ref(0) as any
 setInterval(setTime, 1000);
-setInterval(setTimeMinus, 1000)
+
 
 const playSound = (() => {
 
@@ -139,7 +139,6 @@ const nextSong = () => {
 
 
     setTime()
-    setTimeMinus()
 
 }
 const prevSong = () => {
@@ -157,21 +156,17 @@ const prevSong = () => {
     img.src = songs.value[currentSongIndex.value].songImage
     totalSeconds.value = 0;
     setTime();
-    setTimeMinus()
+    
 }
 
 
 function setTime() {
     ++totalSeconds.value;
     secondsLabel.value = getMinutesSeconds(totalSeconds.value % 60);
-    minutesLabel.value = getMinutesSeconds(parseInt(totalSeconds.value / 60));
+    minutesLabel.value = getMinutesSeconds(parseInt(totalSeconds.value / 60 as any)) 
 
 }
-function setTimeMinus() {
-    totalSecondsMinus.value = --totalDuration.value;
-    secondsLabelMinus.value = getMinutesSeconds(totalSecondsMinus.value % 60);
-    minutesLabelMinus.value = getMinutesSeconds(parseInt(totalSecondsMinus.value / 60));
-}
+
 
 function getMinutesSeconds(val: number) {
     var valString = val + "";
